@@ -1,0 +1,117 @@
+/* ===== Page (wireframe body color) ===== */
+:root{
+  --body:#FFECD7;
+  --card:#008DB1;
+  --card-border:#004E63;
+  --title:#FFFFFF;
+  --sub:#91E4FB;
+  --list:#FFFFFF;
+  --quote:#FFD783;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Helvetica, Arial, sans-serif;
+  background:var(--body);
+  color:#fff; /* inside card we override as needed */
+}
+
+/* Center the card on the page */
+.stage{
+  min-height:100%;
+  display:grid;
+  place-items:center;
+  padding:32px;
+}
+
+/* ===== Card ===== */
+.prophet-card{
+  width:min(680px, 92vw);
+  background:var(--card);
+  border:6px solid var(--card-border);
+  border-radius:22px;
+  padding:28px 28px 30px;
+  box-shadow:0 14px 26px rgba(0,0,0,.18);
+}
+
+/* Header (title + subtitle) */
+.card-header{ text-align:center; }
+.card-title{
+  margin:0 0 6px 0;
+  font-size:2.5rem;
+  line-height:1.1;
+  color:var(--title);
+  font-weight:700;
+}
+.card-sub{
+  margin:0 0 18px 0;
+  font-size:1.05rem;
+  color:var(--sub);
+}
+.card-sub a{
+  color:var(--sub);
+  text-decoration:none;
+}
+.card-sub a:hover{ text-decoration:underline; }
+
+/* Portrait with white frame like wireframe */
+.portrait{
+  display:block;
+  width:min(420px, 88%);
+  margin:0 auto 18px;
+  border:6px solid #fff;
+  outline:3px solid rgba(255,255,255,.3);
+  background:#eee;
+}
+.portrait img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* Facts list */
+.facts{
+  width:min(480px, 90%);
+  margin:8px auto 22px;
+  padding-left:1.2rem;
+  color:var(--list);
+  font-size:1.1rem;
+  line-height:1.7;
+}
+.facts li{ margin:.25rem 0; }
+
+/* Quote (brush script, gold color, centered) */
+.quote{
+  text-align:center;
+  margin:6px auto 0;
+  color:var(--quote);
+  font-family: "Nanum Brush Script", "Brush Script MT", cursive;
+  font-size:1.55rem;
+  letter-spacing:.2px;
+  position:relative;
+  width:min(520px, 92%);
+}
+.quote p{
+  margin:.4rem 0;
+}
+
+/* Small decorative rules above/below (to mimic wireframe emphasis) */
+.rule{
+  display:block;
+  height:2px;
+  width:86%;
+  margin:.25rem auto;
+  background:linear-gradient(90deg, transparent 0 4%, var(--quote) 4% 96%, transparent 96% 100%);
+  opacity:.9;
+}
+.rule--top{ margin-bottom:.5rem; }
+.rule--bottom{ margin-top:.5rem; }
+
+/* Responsive tweaks for narrow screens */
+@media (max-width:440px){
+  .card-title{ font-size:2.1rem; }
+  .facts{ font-size:1rem; }
+  .quote{ font-size:1.35rem; }
+}

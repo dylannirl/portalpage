@@ -1,0 +1,13 @@
+Purpose	Color	Hex	Description
+Primary Background	
+	#0B0C10	Deep black-blue — makes the neon colors pop.
+Secondary Background / Panels	
+	#1F2833	Dark slate — softens contrast for content sections.
+Primary Accent (Cyan)	
+	#45A29E	Matches the cyan glow from your logo; great for links or hover states.
+Secondary Accent (Magenta)	
+	#C2185B	Strong magenta highlight for buttons and titles.
+Highlight / Sun Glow	
+	#FF8C42	Warm neon orange — mirrors the logo’s sun gradient.
+Text / Light Elements	
+	#EAEAEA	Soft white for readable text on dark backgrounds.

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Feed Sign Up</title>
+
+  <style>
+    :root{
+      --bg:#786040;          
+      --card:#ffffff;        
+      --ink:#1b1b1b;         
+      --accent:#13357a;      
+    }
+
+    *{box-sizing:border-box;margin:0}
+
+    body{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      background:var(--bg);
+      font-family: "Georgia", Times, serif;
+      color:var(--ink);
+    }
+
+    .modal{
+      width:min(720px, 92vw);
+      background:var(--card);
+      border:14px solid var(--accent);
+      border-radius:28px;
+      overflow:hidden;
+      position:relative;
+      box-shadow:0 6px 24px rgba(0,0,0,.35);
+    }
+
+    .close{
+      position:absolute;
+      left:12px;
+      top:12px;
+      border:0;
+      background:#eee;
+      width:32px;height:32px;
+      border-radius:6px;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow:0 1px 2px rgba(0,0,0,.2);
+    }
+
+    .banner{
+      position:relative;
+      height:180px;
+      background: url("images/jesus_feeds_5000.jpeg") center/cover no-repeat;
+      border-bottom: 2px solid #fff;
+    }
+
+    .title-wrap{
+      position:absolute;
+      left:28px;
+      bottom:22px;
+      color:#fff;
+      text-shadow:0 2px 4px rgba(0,0,0,.6);
+    }
+
+    .title-wrap h1{
+      font-size:44px;
+      font-weight:900;
+    }
+    .title-wrap h2{
+      font-size:26px;
+      font-weight:700;
+    }
+
+    .form{
+      padding:28px 28px 16px;
+    }
+
+    .form h3{
+      text-align:center;
+      font-weight:700;
+      margin-bottom:18px;
+    }
+
+    .fields{
+      display:grid;
+      grid-template-columns: 160px 1fr;
+      gap:14px 18px;
+      align-items:center;
+      font-size:16px;
+    }
+
+    .fields label{white-space:nowrap}
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"]{
+      width:100%;
+      padding:.5rem .6rem;
+      border:1px solid #b9b9b9;
+      border-radius:3px;
+      font-size:15px;
+    }
+
+    .gender{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      color:#111;
+    }
+
+    .checks{
+      grid-column:1 / -1;
+      display:grid;
+      gap:10px;
+      margin-top:6px;
+      color:#111;
+    }
+
+    .submit-row{
+      grid-column:1 / -1;
+      display:flex;
+      justify-content:center;
+      padding-top:6px;
+    }
+
+    button.submit{
+      padding:.4rem .9rem;
+      border:1px solid #777;
+      background:#efefef;
+      border-radius:4px;
+      cursor:pointer;
+    }
+
+    .books{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap:14px;
+      padding:14px 18px 20px;
+      background:#0d2a61;
+      border-bottom-left-radius:16px;
+      border-bottom-right-radius:16px;
+    }
+
+    .book img{
+      width:100%;
+      height:auto;
+      border-radius:6px;
+      box-shadow:0 3px 10px rgba(0,0,0,.35);
+      object-fit:cover;
+    }
+
+    @media (max-width:520px){
+      .title-wrap h1{font-size:36px}
+      .title-wrap h2{font-size:22px}
+      .fields{grid-template-columns:1fr}
+      .checks,.submit-row{grid-column:auto}
+      .books{grid-template-columns:repeat(2, 1fr);}
+    }
+  </style>
+</head>
+<body>
+
+  <section class="modal" id="formContainer">
+    <button class="close" type="button" id="closeBtn">X</button>
+
+    <header class="banner">
+      <div class="title-wrap">
+        <h1>Daily Feed</h1>
+        <h2>Scripture a Day</h2>
+      </div>
+    </header>
+
+    <div class="form">
+      <h3>Sign Up for Daily Scripture Feed</h3>
+
+      <form id="myForm" class="fields" autocomplete="on">
+        <label for="username">User Name:</label>
+        <input id="username" name="username" type="text" required>
+
+        <label for="password">Password:</label>
+        <input id="password" name="password" type="password" required>
+
+        <label for="email">Email:</label>
+        <input id="email" name="email" type="email" required>
+
+        <label>Gender:</label>
+        <div class="gender">
+          <label><input type="radio" id="male" name="gender" value="Male" required> Male</label>
+          <label><input type="radio" id="female" name="gender" value="Female" required> Female</label>
+        </div>
+
+        <div class="checks">
+          <label><input type="checkbox" id="newsletter" name="newsletter"> Subscribe to newsletter</label>
+          <label><input type="checkbox" id="conditions" name="conditions" required> I acknowledge the terms and conditions</label>
+        </div>
+
+        <div class="submit-row">
+          <button class="submit" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="books">
+      <div class="book"><img src="images/old_testament.webp" alt="Old Testament"></div>
+      <div class="book"><img src="images/new_testament.webp" alt="New Testament"></div>
+      <div class="book"><img src="images/book_of_mormon.webp" alt="Book of Mormon"></div>
+      <div class="book"><img src="images/doctrine_and_covenants.webp" alt="Doctrine and Covenants"></div>
+      <div class="book"><img src="images/pearl_of_great_price.webp" alt="Pearl of Great Price"></div>
+    </div>
+  </section>
+
+  <div id="output"></div>
+
+  <script>
+    document.getElementById("closeBtn").addEventListener("click", () => {
+      document.getElementById("formContainer").style.display = "none";
+    });
+
+    const form = document.getElementById('myForm');
+    const output = document.getElementById('output');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const items = [];
+      for (const [k, v] of data.entries()) {
+        items.push(`<li><strong>${k}</strong>: ${k === 'password' ? v + ' (hash me!)' : v}</li>`);
+      }
+      output.innerHTML = `
+        <br>
+        <h3 style="color:#fff">Here is the data that would be sent to the server:</h3>
+        <ul style="color:#fff">${items.join('')}</ul>
+      `;
+    });
+  </script>
+</body>
+</html>
